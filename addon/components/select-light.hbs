@@ -1,25 +1,24 @@
-<select
-  {{on "change" this.change}}
-  ...attributes>
+<select {{on "change" this.change}} ...attributes>
   {{#if @placeholder}}
     <option value="" selected disabled>
       {{@placeholder}}
     </option>
   {{/if}}
 
-  {{#if hasBlock}}
+  {{#if (has-block)}}
     {{yield}}
   {{else}}
     {{#if this.hasDetailedOptions}}
-      {{#each @options as | optionValue |}}
+      {{#each @options as |optionValue|}}
         <option
           value={{get optionValue this.valueKey}}
-          selected={{is-equal (get optionValue this.valueKey) @value}}>
+          selected={{is-equal (get optionValue this.valueKey) @value}}
+        >
           {{get optionValue this.displayKey}}
         </option>
       {{/each}}
     {{else}}
-      {{#each @options as | optionValue |}}
+      {{#each @options as |optionValue|}}
         <option value={{optionValue}} selected={{is-equal optionValue @value}}>
           {{optionValue}}
         </option>
